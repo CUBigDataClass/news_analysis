@@ -10,7 +10,7 @@ resource "google_compute_firewall" "allow-all-internal" {
   allow {
     protocol = "icmp"
   }
-#   source_ranges = ["x.x.x.x/x"] // your subnet IP range
+  source_ranges = ["10.0.0.0/29"] // your subnet IP range
 }
 
 resource "google_compute_firewall" "allow-internal-lb" {
@@ -20,7 +20,7 @@ resource "google_compute_firewall" "allow-internal-lb" {
     protocol = "tcp"
     ports = var.ports_to_open
   }
-#   source_ranges = ["x.x.x.x/x"] // your subnet IP range
+  source_ranges = ["10.0.0.0/29"] // your subnet IP range
   target_tags = var.network_tags
 }
 
@@ -31,6 +31,6 @@ resource "google_compute_firewall" "allow-health-check" {
     protocol = "tcp"
     ports = var.ports_to_open
   }
-#   source_ranges = ["x.x.x.x/x"] // your subnet IP range
+  source_ranges = ["10.0.0.0/29"] // your subnet IP range
   target_tags = var.network_tags
 }

@@ -18,12 +18,12 @@ resource "google_compute_instance" "my-elastic-kibana" {
     scopes = var.machine_access_scopes
   }
   metadata_startup_script = templatefile("./startup-kibana.sh", {
-    elastic_host_1 = var.node_ips[0],
-    elastic_host_2 = var.node_ips[1],
-    elastic_host_3 = var.node_ips[2],
-    elastic_pw = var.elastic_pw,
-    internal_lb_ip = var.internal_lb_ip,
-    ca_bucket = var.ca_bucket_location,
-    gcp_sa = google_service_account_key.mykey.private_key 
+        elastic_host_1 = var.node_ips[0],
+        elastic_host_2 = var.node_ips[1],
+        elastic_host_3 = var.node_ips[2],
+        elastic_pw = var.elastic_pw,
+        internal_lb_ip = var.internal_lb_ip,
+        # ca_bucket = var.ca_bucket_location,
+        gcp_sa = google_service_account_key.mykey.private_key 
     })
 }
