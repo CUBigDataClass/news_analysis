@@ -7,5 +7,4 @@
 
 ## Launch
 1. Upload elasticsearch-launch.sh
-2. ```chmod +x elasticsearch-launch..sh```
-3. ```./elasticsearch-launch.sh```
+2. ```./elasticsearch-launch.sh```
