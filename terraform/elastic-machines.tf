@@ -32,3 +32,27 @@ resource "google_compute_instance" "elastic-instance-1" {
     elastic_pw = var.elastic_pw, 
   })
 }
+
+resource "google_compute_instance" "elastic-instance-2" {
+  name = "elastic-instance-2"
+  machine_type = var.machine_type
+  zone = var.region_zone_d
+  allow_stopping_for_update = true
+  tags = var.network_tags
+  boot_disk {
+    initialize_params {
+    image = var.gce_image
+    size = 200
+    type = "pd-ssd"
+    }
+  }
+  network_interface {
+    subnetwork = google_compute_subnetwork.elastic-subnet.name
+    network_ip = var.node_ips[1]
+  }
+  service_account {
+    scopes = var.machine_access_scopes
+    email = google_service_account.elastic-backup.email
+  }
+  metadata_startup_script = templatefile("./startup.sh")
+}
