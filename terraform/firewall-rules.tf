@@ -1,6 +1,6 @@
 resource "google_compute_firewall" "allow-all-internal" {
   name = "allow-all-internal"
-  network = google_compute_network.my-elastic-network.name
+  network = google_compute_network.elastic-network.name
   allow {
     protocol = "tcp"
   }
@@ -15,7 +15,7 @@ resource "google_compute_firewall" "allow-all-internal" {
 
 resource "google_compute_firewall" "allow-internal-lb" {
   name = "allow-internal-lb"
-  network = google_compute_network.my-elastic-network.name
+  network = google_compute_network.elastic-network.name
   allow {
     protocol = "tcp"
     ports = var.ports_to_open
@@ -26,7 +26,7 @@ resource "google_compute_firewall" "allow-internal-lb" {
 
 resource "google_compute_firewall" "allow-health-check" {
   name = "allow-health-check"
-  network = google_compute_network.my-elastic-network.name
+  network = google_compute_network.elastic-network.name
   allow {
     protocol = "tcp"
     ports = var.ports_to_open

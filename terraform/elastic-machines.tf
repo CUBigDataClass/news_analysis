@@ -1,7 +1,7 @@
 resource "google_compute_instance" "elastic-instance-1" {
   name = "elastic-instance-1"
   machine_type = var.machine_type
-  zone = var.region_zone_d
+  zone = var.region_zone_a
   allow_stopping_for_update = true
   tags = var.network_tags
   boot_disk {
@@ -12,31 +12,19 @@ resource "google_compute_instance" "elastic-instance-1" {
     }
   }
   network_interface {
-    subnetwork = google_compute_subnetwork.elastic-subnet.name
+    subnetwork = google_compute_subnetwork.elastic-subnet.self_link
     network_ip = var.node_ips[0]
   }
   service_account {
     scopes = var.machine_access_scopes
-    email = google_service_account.elastic-backup.email
   }
-  metadata_startup_script = templatefile("./startup-elastic.sh", {
-    node_name = var.main_node,
-    network_host = var.node_ips[0],
-    elastic_host_1 = var.node_ips[0],
-    elastic_host_2 = var.node_ips[1],
-    elastic_host_3 = var.node_ips[2],
-    master_node = var.main_node,
-    # ca_bucket = var.ca_bucket_location,
-    # backup_bucket = var.backup_bucket,
-    gcp_sa = google_service_account_key.mykey.private_key,
-    elastic_pw = var.elastic_pw, 
-  })
+  metadata_startup_script = templatefile("./startup.sh", {})
 }
 
 resource "google_compute_instance" "elastic-instance-2" {
   name = "elastic-instance-2"
   machine_type = var.machine_type
-  zone = var.region_zone_d
+  zone = var.region_zone_a
   allow_stopping_for_update = true
   tags = var.network_tags
   boot_disk {
@@ -47,12 +35,34 @@ resource "google_compute_instance" "elastic-instance-2" {
     }
   }
   network_interface {
-    subnetwork = google_compute_subnetwork.elastic-subnet.name
+    subnetwork = google_compute_subnetwork.elastic-subnet.self_link
     network_ip = var.node_ips[1]
   }
   service_account {
     scopes = var.machine_access_scopes
-    email = google_service_account.elastic-backup.email
   }
-  metadata_startup_script = templatefile("./startup.sh")
+  metadata_startup_script = templatefile("./startup.sh", {})
+}
+
+resource "google_compute_instance" "elastic-instance-3" {
+  name = "elastic-instance-3"
+  machine_type = var.machine_type
+  zone = var.region_zone_b
+  allow_stopping_for_update = true
+  tags = var.network_tags
+  boot_disk {
+    initialize_params {
+    image = var.gce_image
+    size = 200
+    type = "pd-ssd"
+    }
+  }
+  network_interface {
+    subnetwork = google_compute_subnetwork.elastic-subnet.self_link
+    network_ip = var.node_ips[2]
+  }
+  service_account {
+    scopes = var.machine_access_scopes
+  }
+  metadata_startup_script = templatefile("./startup.sh", {})
 }

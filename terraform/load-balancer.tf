@@ -15,8 +15,8 @@ resource "google_compute_forwarding_rule" "elastic-internal-lb-i-forwarding-rule
   name = "elastic-internal-lb-i-forwarding-rule"
   load_balancing_scheme = "INTERNAL"
   ports = var.ports_to_open
-  network = google_compute_network.my-elastic-network.self_link
-  subnetwork = google_compute_subnetwork.my-elastic-subnet.self_link
+  network = google_compute_network.elastic-network.self_link
+  subnetwork = google_compute_subnetwork.elastic-subnet.self_link
   backend_service = google_compute_region_backend_service.elastic-internal-lb-i.self_link
   ip_address = var.internal_lb_ip
 }
