@@ -7,7 +7,7 @@ resource "google_compute_instance" "elastic-instance-1" {
   boot_disk {
     initialize_params {
     image = var.gce_image
-    size = 200
+    size = 100
     type = "pd-ssd"
     }
   }
@@ -30,7 +30,7 @@ resource "google_compute_instance" "elastic-instance-2" {
   boot_disk {
     initialize_params {
     image = var.gce_image
-    size = 200
+    size = 100
     type = "pd-ssd"
     }
   }
@@ -53,7 +53,7 @@ resource "google_compute_instance" "elastic-instance-3" {
   boot_disk {
     initialize_params {
     image = var.gce_image
-    size = 200
+    size = 100
     type = "pd-ssd"
     }
   }

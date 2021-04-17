@@ -23,14 +23,3 @@ resource "google_compute_firewall" "allow-internal-lb" {
   source_ranges = ["10.128.0.0/20"] // your subnet IP range
   target_tags = var.network_tags
 }
-
-resource "google_compute_firewall" "allow-health-check" {
-  name = "allow-health-check"
-  network = google_compute_network.elastic-network.name
-  allow {
-    protocol = "tcp"
-    ports = var.ports_to_open
-  }
-  source_ranges = ["10.128.0.0/20"] // your subnet IP range
-  target_tags = var.network_tags
-}

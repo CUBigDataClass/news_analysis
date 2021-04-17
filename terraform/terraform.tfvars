@@ -1,4 +1,4 @@
-project_name = "total-news"
+project_name = "terraform-elasticsearch"
 region = "us-central1"
 region_zone_a = "us-central1-a"
 region_zone_b = "us-central1-b"
@@ -8,7 +8,7 @@ network_tags = ["total-news-elasticsearch"]
 kibana_tags = ["kibana-tag","http-server","https-server"]
 ports_to_open = ["80","9200","443","9300","3000"] // for loadbalancer
 machine_access_scopes = ["cloud-platform","userinfo-email", "compute-ro", "storage-rw", "monitoring-write", "logging-write", "https://www.googleapis.com/auth/trace.append"]
-node_ips = ["10.128.0.1", "10.128.0.2", "10.128.0.3"]  // IPs within my subnet
+node_ips = ["10.128.0.2", "10.128.0.3", "10.128.0.4"]  // IPs within my subnet
 master_node = "my-elastic-master-node"
 gce_image = "debian-cloud/debian-9"
 ssh_tags = ["ssh-kibana","ssh-elastics"]

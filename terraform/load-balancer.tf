@@ -1,8 +1,8 @@
 resource "google_compute_region_backend_service" "elastic-internal-lb-i" {
   name = "elastic-internal-lb-i"
   load_balancing_scheme = "INTERNAL"
-  health_checks = [google_compute_health_check.my-tcp-health-check.self_link]
   region = var.region
+  health_checks = [google_compute_health_check.tcp-health-check.self_link]
   backend {
    group = google_compute_instance_group.us-elastic-ig-zone-a.self_link
   }
@@ -21,8 +21,8 @@ resource "google_compute_forwarding_rule" "elastic-internal-lb-i-forwarding-rule
   ip_address = var.internal_lb_ip
 }
 
-resource "google_compute_health_check" "my-tcp-health-check" {
-  name = "my-tcp-health-check"
+resource "google_compute_health_check" "tcp-health-check" {
+  name = "tcp-health-check"
   description = "Health check via tcp"
   check_interval_sec = 300
   timeout_sec = 300
