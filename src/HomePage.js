@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
 }));
-function App() {
+function HomePage() {
     const [newsArray, setNewsArray] = useState([1, 1, 1, 1, 1, 1])
     const classes = useStyles();
     return (
@@ -51,4 +51,4 @@ function App() {
     );
 }
 
-export default App;
+export default HomwPage;
