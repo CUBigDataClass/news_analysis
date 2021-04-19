@@ -1,4 +1,4 @@
-//https://ihsavru.medium.com/react-d3-implementing-a-pie-chart-dc7bf13ff418
+//Code is started from https://ihsavru.medium.com/react-d3-implementing-a-pie-chart-dc7bf13ff418
 
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
@@ -70,7 +70,7 @@ function PieChart(props) {
             .attr('text-anchor', 'middle')
             .attr('alignment-baseline', 'middle')
             .text((d) => d.data.label)
-            .style('fill', (_, i) => colorScale(i) +0.1)
+            .style('fill', (_, i) => colorScale(i) + 1)
             .attr('transform', (d) => {
                 const [x, y] = arcGenerator.centroid(d);
                 return `translate(${x}, ${y})`;

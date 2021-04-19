@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import MediaCard from './MediaCard'
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from "@material-ui/core/styles";
@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
 }));
+
 function HomePage() {
     const [newsArray, setNewsArray] = useState([1, 1, 1, 1, 1, 1])
     const classes = useStyles();
@@ -51,4 +52,4 @@ function HomePage() {
     );
 }
 
-export default HomwPage;
+export default HomePage;

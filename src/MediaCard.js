@@ -1,5 +1,6 @@
-//https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/cards/MediaCard.js
-import React, {useState} from 'react';
+//Code is started from https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/cards/MediaCard.js
+
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -9,8 +10,6 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import FireImage from './maxim-tajer-x3S1aGQNgro-unsplash.jpg';
-import ReactCardFlip from "react-card-flip";
-import PieChart from "./tweetsAnalysis";
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -24,20 +23,15 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard() {
-  const [isFlipped, setIsFlipped] = useState(false);
   const classes = useStyles();
   const history = useHistory();
 
-  const handleClick = () => {
-    setIsFlipped(!isFlipped);
-  };
 
   const clickToDetails = () => {
     history.push("/news");
   }
 
   return (
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
         <Card className={classes.root}>
           <CardActionArea>
             <CardMedia
@@ -60,15 +54,7 @@ export default function MediaCard() {
             <Button size="small" color="primary" onClick={clickToDetails}>
               Find Out More
             </Button>
-            <Button size="small" color="primary" onClick={handleClick}>
-              Find Out More
-            </Button>
           </CardActions>
         </Card>
-        <div>
-          <PieChart></PieChart>
-          <button onClick={handleClick}>Click to flip</button>
-        </div>
-      </ReactCardFlip>
   );
 }
