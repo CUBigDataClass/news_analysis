@@ -35,6 +35,7 @@ services:
   nextjs-ui:
     build: 
       context: ./total-news-next
+      dockerfile: ./total-news-next/Dockerfile
     ports:
       - "3000:3000"
     container_name: nextjs-ui
