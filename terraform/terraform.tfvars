@@ -1,4 +1,4 @@
-project_name = "terraform-elasticsearch"
+project_name = "terraform-elasticsearch-docker"
 region = "us-central1"
 region_zone_a = "us-central1-a"
 region_zone_b = "us-central1-b"
@@ -10,7 +10,7 @@ ports_to_open = ["80","9200","443","9300","3000"] // for loadbalancer
 machine_access_scopes = ["cloud-platform","userinfo-email", "compute-ro", "storage-rw", "monitoring-write", "logging-write", "https://www.googleapis.com/auth/trace.append"]
 node_ips = ["10.128.0.2", "10.128.0.3", "10.128.0.4"]  // IPs within my subnet
 master_node = "my-elastic-master-node"
-gce_image = "debian-cloud/debian-9"
+gce_image = "cos-cloud/cos-stable"
 ssh_tags = ["ssh-kibana","ssh-elastics"]
 ca_bucket_location = "[gs://my-bucket-where-I-keep-certificates]"
 backup_bucket = "bucket-name" // without gs://
