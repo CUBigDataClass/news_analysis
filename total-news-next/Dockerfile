@@ -1,23 +1,21 @@
 # Install dependencies only when needed
-FROM node:alpine AS deps
+FROM ubuntu:trusty AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
 WORKDIR /total-news-next
-RUN npm install --global yarn
-COPY package.json package-lock.json ./
 RUN yarn import
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM node:alpine AS builder
+FROM ubuntu:trusty AS builder
 WORKDIR /total-news-next
 COPY . .
 COPY --from=deps /total-news-next/node_modules ./node_modules
 RUN yarn build
 
 # Production image, copy all the files and run next
-FROM node:alpine AS runner
+FROM ubuntu:trusty AS runner
 WORKDIR /total-news-next
 
 ENV NODE_ENV production
