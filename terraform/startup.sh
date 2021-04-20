@@ -12,4 +12,6 @@ echo alias docker-compose="'"'docker run --rm \
 
 source ~/.bashrc
 
+docker-compose build
+
 docker-compose up
