@@ -4,15 +4,15 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /total-news-next
 COPY package.json package-lock.json ./
-RUN npm ci
-# RUN yarn install --frozen-lockfile
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM node:alpine AS builder
 WORKDIR /total-news-next
 COPY . .
 COPY --from=deps /total-news-next/node_modules ./node_modules
-RUN npm build
+RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:alpine AS runner
@@ -39,4 +39,4 @@ EXPOSE 3000
 # Uncomment the following line in case you want to disable telemetry.
 RUN npx next telemetry disable
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
