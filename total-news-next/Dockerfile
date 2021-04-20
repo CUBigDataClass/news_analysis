@@ -11,10 +11,7 @@ FROM node:lts-alpine3.13 AS builder
 WORKDIR /total-news-next
 COPY . .
 COPY --from=deps /total-news-next/node_modules ./node_modules
-RUN npm ci
-RUN npm run build 
-RUN npm prune --production
- # RUN yarn build
+# RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:lts-alpine3.13 AS runner
@@ -29,6 +26,9 @@ COPY --from=builder /total-news-next/.next ./.next
 COPY --from=builder /total-news-next/node_modules ./node_modules
 COPY --from=builder /total-news-next/package.json ./package.json
 
+#run build once all files copied
+RUN yarn build
+
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 RUN chown -R nextjs:nodejs /total-news-next/.next
@@ -41,4 +41,4 @@ EXPOSE 3000
 # Uncomment the following line in case you want to disable telemetry.
 RUN npx next telemetry disable
 
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
