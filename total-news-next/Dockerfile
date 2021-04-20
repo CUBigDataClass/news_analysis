@@ -10,7 +10,7 @@ COPY package.json package-lock.json ./
 FROM node:alpine AS builder
 WORKDIR /total-news-next
 COPY . .
-COPY --from=deps ./node_modules ./node_modules
+COPY --from=deps /total-news-next/node_modules ./node_modules
 RUN npm build
 
 # Production image, copy all the files and run next
@@ -21,10 +21,10 @@ ENV NODE_ENV production
 
 # You only need to copy next.config.js if you are NOT using the default configuration
 # COPY --from=builder /total-news-next/next.config.js ./
-COPY --from=builder ./public ./public
-COPY --from=builder ./.next ./.next
-COPY --from=builder ./node_modules ./node_modules
-COPY --from=builder ./package.json ./package.json
+COPY --from=builder /total-news-next/public ./public
+COPY --from=builder /total-news-next/.next ./.next
+COPY --from=builder /total-news-next/node_modules ./node_modules
+COPY --from=builder /total-news-next/package.json ./package.json
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
