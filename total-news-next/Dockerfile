@@ -11,7 +11,7 @@ FROM node:lts-alpine3.13 AS builder
 WORKDIR /total-news-next
 COPY . .
 COPY --from=deps /total-news-next/node_modules ./node_modules
-RUN yarn build
+# RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:lts-alpine3.13 AS runner
@@ -25,6 +25,9 @@ COPY --from=builder /total-news-next/public ./public
 COPY --from=builder /total-news-next/.next ./.next
 COPY --from=builder /total-news-next/node_modules ./node_modules
 COPY --from=builder /total-news-next/package.json ./package.json
+
+#run build once all files are copied
+RUN yarn build
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
