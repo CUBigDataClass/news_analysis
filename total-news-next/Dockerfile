@@ -4,6 +4,7 @@ FROM node:alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /total-news-next
 COPY package.json package-lock.json ./
+RUN npm ci
 # RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
@@ -36,6 +37,6 @@ EXPOSE 3000
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
-# RUN npx next telemetry disable
+RUN npx next telemetry disable
 
 CMD ["npm", "start"]
