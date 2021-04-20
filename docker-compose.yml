@@ -17,7 +17,7 @@ services:
     cap_add: 
       - IPC_LOCK
     volumes: 
-      - elasticsearch-data:/usr/share/elasticsearch/data
+      - ./elasticsearch-data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
 
@@ -40,7 +40,7 @@ services:
     container_name: nextjs-ui
     stdin_open: true
     volumes: 
-      - total-news-next:/urs/src/app/total-next-next
+      - ./total-news-next:/urs/src/app/total-next-next
       - /usr/src/app/my-app/node_modules
 
 volumes:
