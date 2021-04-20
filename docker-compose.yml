@@ -1,4 +1,4 @@
-version: 3.7
+version: '3.7'
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
@@ -21,27 +21,27 @@ services:
     ports:
       - 9200:9200
 
-    kibana:
-      container_name: kibana
-      image: docker.elastic.co/kibana/kibana:7.12.0
-      restart: always
-      environment: 
-          - ELASTICSEARCH_HOSTS=http:elasticsearch:9200
-      ports:
-          - 5601:5601
-      depends_on:
-          - elasticsearch
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.12.0
+    restart: always
+    environment: 
+        - ELASTICSEARCH_HOSTS=http:elasticsearch:9200
+    ports:
+        - 5601:5601
+    depends_on:
+        - elasticsearch
 
-    nextjs-ui:
-        build: 
-            context: ../total-news-next
-        ports:
-            - "3000:3000"
-        container_name: nextjs-ui
-        stdin_open: true
-        volumes: 
-            - ../total-news-next:/urs/src/app/total-next-next
-            - /usr/src/app/my-app/node_modules
+  nextjs-ui:
+      build: 
+          context: ../total-news-next
+      ports:
+          - "3000:3000"
+      container_name: nextjs-ui
+      stdin_open: true
+      volumes: 
+          - ../total-news-next:/urs/src/app/total-next-next
+          - /usr/src/app/my-app/node_modules
 
 volumes:
   elasticsearch-data-volume:
