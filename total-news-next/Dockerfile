@@ -41,4 +41,7 @@ EXPOSE 3000
 # Uncomment the following line in case you want to disable telemetry.
 RUN npx next telemetry disable
 
+# add bash to alpine image
+RUN apk update && apk add bash
+
 CMD ["yarn", "start"]
