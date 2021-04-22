@@ -7,7 +7,7 @@ resource "google_compute_instance" "elastic-instance-1" {
   boot_disk {
     initialize_params {
     image = var.gce_image
-    size = 100
+    size = 130
     type = "pd-ssd"
     }
   }
@@ -18,7 +18,7 @@ resource "google_compute_instance" "elastic-instance-1" {
   service_account {
     scopes = var.machine_access_scopes
   }
-  metadata_startup_script = templatefile("./startup.sh", {})
+  metadata_startup_script = file("startup.sh")
 }
 
 resource "google_compute_instance" "elastic-instance-2" {
@@ -41,7 +41,6 @@ resource "google_compute_instance" "elastic-instance-2" {
   service_account {
     scopes = var.machine_access_scopes
   }
-  metadata_startup_script = templatefile("./startup.sh", {})
 }
 
 resource "google_compute_instance" "elastic-instance-3" {
@@ -64,5 +63,5 @@ resource "google_compute_instance" "elastic-instance-3" {
   service_account {
     scopes = var.machine_access_scopes
   }
-  metadata_startup_script = templatefile("./startup.sh", {})
+  # metadata_startup_script = templatefile("./startup.sh", {})
 }

@@ -1,0 +1,34 @@
+{
+    "variables": {
+          "gcloud_account_json": "terraform-elasticsearch-docker-f363c4e09689.json",
+          "gcloud_project_id": "terraform-elasticsearch-docker"
+    },
+    "builders": [
+      {
+        "type": "googlecompute",
+        "account_file": "{{user `gcloud_account_json`}}",
+        "project_id": "{{user `gcloud_project_id`}}",
+        "ssh_username":"packer",
+        "source_image": "cos-stable-89-16108-403-15",
+        "image_name": "es-plus-webapp-image",
+        "zone": "us-central1-a",
+        "machine_type":"n1-standard-2",
+        "disk_size": "130",
+        "image_family":"cos-stable"
+      }
+    ],
+    "provisioners": [
+        {
+             "type": "shell",
+             "inline": [
+                "mkdir /home/src",
+                "cd /home/src",
+                "git clone https://github.com/CUBigDataClass/news_analysis.git",
+                "cd news_analysis",
+                "docker run docker/compose:1.29.1 version",
+                "docker run --rm \\ -v /var/run/docker.sock:/var/run/docker.sock \\ -v '$PWD:$PWD' \\ -w='$PWD' \\ docker/compose:1.29.1 up",
+                "docker-compose"
+             ]
+        }
+    ]
+  }
