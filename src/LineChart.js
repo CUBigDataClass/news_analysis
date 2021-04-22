@@ -73,7 +73,7 @@ function LineChart(props) {
 
         svg
             .append('path')
-            .datum(data)
+            .data([data])
             .attr("d", value => myLine(value))
             .attr('fill', 'none')
             .attr('stroke', "url(#line-gradient)")

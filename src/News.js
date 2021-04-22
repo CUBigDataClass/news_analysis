@@ -15,6 +15,9 @@ const useStyles = makeStyles(() => ({
 
 function News() {
     const classes = useStyles();
+    // const { news } =
+    //     (props.location && props.location.state) || {};
+    // console.log(news)
     return (
         <Card className={classes.root}>
             <CardContent>
