@@ -4,15 +4,15 @@ const { Client } = require('@elastic/elasticsearch')
 
 const client = new Client({
     cloud: {
-        id: 'i-o-optimized-deployment:dXMtd2VzdDEuZ2NwLmNsb3VkLmVzLmlvJGM5ZGJhMWM2MDFkYTRhODRiZDE4NDMxM2YwOGQ1MDJjJDcwMDkyNWJjYTgxZDQzMjU4MTZmZDM4Yjc3OWUwOTNi'
+        id: ''
     },
     auth: {
         username: 'elastic',
-        password: '56IaBb2HCuwdIEkRlzr9aU2P'
+        password: ''
     }
 })
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('c7a35ea574f94546bfb18bd32950dafc');
+const newsapi = new NewsAPI('');
 
 export const postNews = async (req, res) => {
     try {
