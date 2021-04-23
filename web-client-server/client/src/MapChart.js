@@ -1,4 +1,10 @@
 //code is from https://www.react-simple-maps.io/examples/usa-with-state-labels/
+/**************************************************
+ * Title: USA states map with labels
+ * Author: Richard Zimerman
+ * Date: 2017
+ * Availability: https://www.react-simple-maps.io/examples/usa-with-state-labels/
+ ***************************************************/
 import React from "react";
 import { geoCentroid } from "d3-geo";
 import {

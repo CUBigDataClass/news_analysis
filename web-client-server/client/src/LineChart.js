@@ -1,5 +1,10 @@
 //Code is started from https://betterprogramming.pub/react-d3-plotting-a-line-chart-with-tooltips-ed41a4c31f4f
-
+/**************************************************
+ * Title: Plotting a Line Chart With Tooltips Using React and D3.js
+ * Author: Urvashi
+ * Date: 2020
+ * Availability: https://betterprogramming.pub/react-d3-plotting-a-line-chart-with-tooltips-ed41a4c31f4f
+ ***************************************************/
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 
