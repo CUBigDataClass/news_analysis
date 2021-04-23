@@ -1,5 +1,10 @@
 //Code is started from https://ihsavru.medium.com/react-d3-implementing-a-pie-chart-dc7bf13ff418
-
+/**************************************************
+ * Title: React + d3: Implementing a Pie Chart
+ * Author: Urvashi
+ * Date: 2020
+ * Availability: https://ihsavru.medium.com/react-d3-implementing-a-pie-chart-dc7bf13ff418
+ ***************************************************/
 import React, { useEffect } from 'react';
 import * as d3 from 'd3';
 

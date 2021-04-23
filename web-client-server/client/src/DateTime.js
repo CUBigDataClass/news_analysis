@@ -1,4 +1,11 @@
 //Code is from https://medium.com/create-a-clocking-in-system-on-react/create-a-react-app-displaying-the-current-date-and-time-using-hooks-21d946971556
+/**************************************************
+ * Title: Create a React App Displaying the Current Date and Time Using Hooks
+ * Author: Yousef Ahmed
+ * Date: 2020
+ * Availability: https://medium.com/create-a-clocking-in-system-on-react/create-a-react-app-displaying-the-current-date-and-time-using-hooks-21d946971556
+ ***************************************************/
+
 import React, {useEffect, useState} from 'react';
 
 export default function DateTime () {

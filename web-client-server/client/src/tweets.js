@@ -61,18 +61,6 @@ function Tweets() {
                              )
                     }
                 </List>
-
-                {/*<List className={classes.root}>*/}
-                {/*    {*/}
-                {/*        tweets.map((tweet) => {*/}
-                {/*            <ListItem alignItems="flex-start">*/}
-                {/*                <ListItemText primary={tweet}/>*/}
-                {/*            </ListItem>*/}
-                {/*        })*/}
-                {/*    }*/}
-                {/*</List>*/}
-
-
             </CardContent>
         </Card>
     );

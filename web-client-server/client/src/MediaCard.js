@@ -1,4 +1,10 @@
 //Code is started from https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/cards/MediaCard.js
+/**************************************************
+ * Title: MediaCard.js
+ * Author: Olivier Tassinari, Kristoffer K., Matt
+ * Date: 2020
+ * Availability: https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/cards/MediaCard.js
+ ***************************************************/
 
 import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
