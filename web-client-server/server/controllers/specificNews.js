@@ -4,11 +4,11 @@ const { Client } = require('@elastic/elasticsearch')
 
 const client = new Client({
     cloud: {
-        id: 'big-data-news-analysis:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJGExZjUxN2UxOWQzYzRiOWJhNjNkMjdlZTAyOWYxOGZhJDljNGUyNmEzMjAwZTQ2ZDQ4YjNhMGE4OTk4NzY4Yjkw'
+        id: ''
     },
     auth: {
         username: 'elastic',
-        password: '5gHGxn73bhwEAMzGY0f7USsy'
+        password: ''
     }
 })
 
