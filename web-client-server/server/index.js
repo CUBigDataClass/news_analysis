@@ -4,10 +4,10 @@ const app = express();
 import newsRoutes from './routes/news.js';
 
 app.use(cors());
-app.use('/', newsRoutes);
+app.use('/all-news', newsRoutes);
 
-const port = 3000;
-app.listen(3000, () => {
+const port = 5000;
+app.listen(5000, () => {
     console.log(`App running on port ${port}`);
 });
 

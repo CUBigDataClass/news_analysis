@@ -41,13 +41,13 @@ export const postNews = async (req, res) => {
         }, {ignore: [400]})
 
         newsapi.v2.topHeadlines({
-            q: 'bitcoin',
             category: 'business',
             language: 'en',
             country: 'us'
         }).then(async response => {
             const dataset = response.articles
             const body = dataset.flatMap(doc => [{index: {_index: 'news'}}, doc])
+            const { body: bulkResponse } = await client.bulk({ refresh: true, body })
         });
     } catch (error) {
         res.status(404).json({message: error.message});
