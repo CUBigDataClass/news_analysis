@@ -36,6 +36,7 @@ function HomePage() {
     useEffect(() => {
         axios.get(url).then(resp => {
             resp.data.map((news) => {
+                news._source['_id'] = news._id;
                 setNewsArray( oldArray => [...oldArray, news._source]);
             })
         });

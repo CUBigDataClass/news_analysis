@@ -25,17 +25,15 @@ export default function MediaCard(props) {
   const classes = useStyles();
   const history = useHistory();
   const [news, setNews] = useState({...props.news});
-  const [data, setData] = useState({...props.news});
 
 
   const clickToDetails = () => {
-    history.push("/news");
-
+    history.push(`/news/${news._id}`);
   }
 
   useEffect(() => {
     setNews(props.news);
-  }, [props.news])
+  }, [])
 
 
   return (

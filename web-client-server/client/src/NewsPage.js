@@ -7,6 +7,7 @@ import LineChart from './LineChart';
 import Button from "@material-ui/core/Button";
 import {useHistory} from "react-router-dom";
 import MapChart from "./MapChart";
+import Tweets from "./tweets";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -29,20 +30,20 @@ function NewsPage() {
             </Button>
 
             <Grid container spaceing={3}>
-                <Grid style={{ padding: "2%" }} item xs={6}>
-                    <News/>
-                </Grid>
-                <Grid style={{ padding: "2%" }} item xs={6}>
-                    <MapChart />
-                </Grid>
-                <Grid style={{ padding: "2%" }} item xs={6}>
+                <Grid style={{ padding: "2%" }} item xs={4}>
                     <News/>
                 </Grid>
                 <Grid style={{ padding: "2%" }} item xs={3}>
                     <PieChart/>
                 </Grid>
-                <Grid style={{ padding: "2%" }} item xs={3}>
+                <Grid style={{ padding: "2%" }} item xs={4}>
                     <LineChart/>
+                </Grid>
+                <Grid style={{ padding: "2%" }} item xs={6}>
+                    <Tweets/>
+                </Grid>
+                <Grid style={{ padding: "2%" }} item xs={6}>
+                    <MapChart />
                 </Grid>
 
             </Grid>

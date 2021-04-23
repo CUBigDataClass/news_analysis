@@ -1,5 +1,5 @@
 import express from 'express';
-import { getNews, postNews } from '../controllers/news.js';
+import { getNews, postNews } from '../controllers/allNews.js';
 const router = express.Router();
 
 //localhost:500/posts
