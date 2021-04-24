@@ -11,15 +11,7 @@ const client = new Client({
         password: process.env.ELASTICSEARCH_PASSWORD
     }
 })
-// const client = new Client({
-//     cloud: {
-//         id: 'big-data-news-analysis:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJGExZjUxN2UxOWQzYzRiOWJhNjNkMjdlZTAyOWYxOGZhJDljNGUyNmEzMjAwZTQ2ZDQ4YjNhMGE4OTk4NzY4Yjkw'
-//     },
-//     auth: {
-//         username: 'elastic',
-//         password: '5gHGxn73bhwEAMzGY0f7USsy'
-//     }
-// })
+
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI(process.env.NEWSAPI_KEY);
 
