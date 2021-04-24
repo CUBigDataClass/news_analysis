@@ -1,18 +1,28 @@
 import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 const { Client } = require('@elastic/elasticsearch')
-
+require('dotenv').config();
 const client = new Client({
     cloud: {
-        id: ''
+        id: process.env.ELASTICSEARCH_CLOUD_ID
     },
     auth: {
         username: 'elastic',
-        password: ''
+        password: process.env.ELASTICSEARCH_PASSWORD
     }
 })
+// const client = new Client({
+//     cloud: {
+//         id: 'big-data-news-analysis:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJGExZjUxN2UxOWQzYzRiOWJhNjNkMjdlZTAyOWYxOGZhJDljNGUyNmEzMjAwZTQ2ZDQ4YjNhMGE4OTk4NzY4Yjkw'
+//     },
+//     auth: {
+//         username: 'elastic',
+//         password: '5gHGxn73bhwEAMzGY0f7USsy'
+//     }
+// })
 const NewsAPI = require('newsapi');
-const newsapi = new NewsAPI('');
+const newsapi = new NewsAPI(process.env.NEWSAPI_KEY);
+
 
 export const postNews = async (req, res) => {
     try {
