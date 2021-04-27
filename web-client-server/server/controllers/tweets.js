@@ -18,9 +18,9 @@ export const getTweets = async (req, res) => {
     try {
         const { body } = await client.search({
             index: 'tweets',
-            // body: {
-            //     query: {match: {_id: req.query.id}}
-            // }
+            body: {
+                query: {match: {news_id: req.query.id}}
+            }
         })
         res.status(200).json(body.hits.hits);
     } catch (error) {
