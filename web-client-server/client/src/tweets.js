@@ -40,7 +40,7 @@ function Tweets() {
                     }
                 }).then(resp => {
                     resp.data.map((tweet) => {
-                        setTweets( oldArray => [...oldArray, tweet._source.text]);
+                        setTweets( oldArray => [...oldArray, tweet._source]);
                     })
                 })
             });
@@ -56,7 +56,7 @@ function Tweets() {
                     {
                         tweets.map((tweet) => (
                             <ListItem alignItems="flex-start">
-                                <ListItemText primary={tweet} />
+                                <ListItemText primary={tweet.text} secondary={tweet.created_at}/>
                             </ListItem>)
                              )
                     }
