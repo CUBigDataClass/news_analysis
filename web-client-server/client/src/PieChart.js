@@ -5,16 +5,19 @@
  * Date: 2020
  * Availability: https://ihsavru.medium.com/react-d3-implementing-a-pie-chart-dc7bf13ff418
  ***************************************************/
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import * as d3 from 'd3';
+import axios from "axios";
+import {useParams} from "react-router-dom";
 
 function PieChart(props) {
     const {
-        data = [{ label: 'Positive', value: 10 }, { label: 'Negative', value: 20 }],
+        // data = [{ label: 'Positive', value: 10 }, { label: 'Negative', value: 20 }, {label: 'neutral', value: 10}],
         outerRadius=100,
         innerRadius=0,
     } = props;
-
+    const defaultData = [{ label: 'Positive', value: 10 }, { label: 'Negative', value: 10 }, {label: 'Neutral', value: 10}]
+    const [data, setData] = useState(defaultData);
     const margin = {
         top: 50, right: 50, bottom: 50, left: 50,
     };
@@ -30,6 +33,44 @@ function PieChart(props) {
     useEffect(() => {
         drawChart();
     }, [data]);
+
+    const { id } = useParams();
+    useEffect(() => {
+        const newsUrl = 'http://localhost:5000/pie-chart';
+        fetch(`http://localhost:3000/news/${id}`)
+            .then(() => {
+                axios.get(newsUrl, {
+                    params: {
+                        id: id,
+                        sentiment: "positive"
+                    }
+                }).then(resp => {
+                    const newData = data.slice()
+                    newData[0].value = resp.data.hits.total.value
+                    setData(newData)
+                })
+                axios.get(newsUrl, {
+                    params: {
+                        id: id,
+                        sentiment: "negative"
+                    }
+                }).then(resp => {
+                    const newData = data.slice()
+                    newData[1].value = resp.data.hits.total.value
+                    setData(newData)
+                })
+                axios.get(newsUrl, {
+                    params: {
+                        id: id,
+                        sentiment: "neutral"
+                    }
+                }).then(resp => {
+                    const newData = data.slice()
+                    newData[2].value = resp.data.hits.total.value
+                    setData(newData)
+                })
+            });
+    }, [])
 
     function drawChart() {
         // Remove the old svg

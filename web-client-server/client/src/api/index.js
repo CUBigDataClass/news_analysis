@@ -1,4 +1,5 @@
 import axios from 'axios';
-const url = 'http://localhost:5000/';
+// 'server' is the name of our api service
+const url = 'http://server:5000/';
 
 export const fetchNews = () => axios.get(url);

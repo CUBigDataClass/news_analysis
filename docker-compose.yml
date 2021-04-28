@@ -1,0 +1,74 @@
+version: '3.7'
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.12.0
+    container_name: elasticsearch
+    restart: always
+    environment: 
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add: 
+      - IPC_LOCK
+    volumes: 
+      - ./elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      elastic-app-network
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.12.0
+    restart: always
+    environment: 
+      - ELASTICSEARCH_HOSTS=http:elasticsearch:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+    networks:
+      elastic-app-network
+
+  client:
+    image: mhart/alpine-node:16.0
+    restart: always
+    ports:
+      - "3000:3000"
+    working_dir: /client/src/app
+    volumes:
+      - ./client:/client/src/app
+    entrypoint: ["npm", "start"]
+    links:
+      - server
+    networks:
+      - elastic-app-network
+            
+  server:
+    image: mhart/alpine-node:16.0
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/server
+      - /server/node_modules
+    networks:
+      - elastic-app-network
+
+networks:
+  elastic-app-network:
+    driver: bridge
+
+volumes:
+  elasticsearch-data:
+    driver: local
+
+volumes:
+  client:
+    driver: local
