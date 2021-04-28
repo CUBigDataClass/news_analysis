@@ -21,7 +21,7 @@ services:
     ports:
       - 9200:9200
     networks:
-      elastic-app-network
+      - elastic-app-network
 
   kibana:
     container_name: kibana
@@ -34,7 +34,7 @@ services:
     depends_on:
       - elasticsearch
     networks:
-      elastic-app-network
+      - elastic-app-network
 
   zookeeper:
     image: zookeeper

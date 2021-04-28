@@ -31,14 +31,14 @@ resource "google_compute_instance" "elastic-instance-1" {
     user = "tile9389"
     private_key = file("~/.ssh/id_rsa")
   }
-  # provisioner "file" {
-  #   source      = "../pipeline/"
-  #   destination = "/tmp"
-  # }
+  provisioner "file" {
+    source      = "../pipeline/startup.sh"
+    destination = "/tmp/startup.sh"
+  }
   provisioner "remote-exec" {
     inline = [
-      "cd /tmp",
-      "sudo sh ./startup.sh"
+      "chmod +x /tmp/startup.sh",
+      "sudo sh /tmp/startup.sh"
     ]
   }
 }

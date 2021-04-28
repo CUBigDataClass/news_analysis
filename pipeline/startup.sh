@@ -53,6 +53,7 @@ sudo make alt install
 # install python END ----------------------------
 
 #clone project code
+sudo apt-get install -y git
 cd /tmp
 git clone https://github.com/CUBigDataClass/news_analysis.git
 cd news_analysis
