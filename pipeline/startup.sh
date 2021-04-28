@@ -53,5 +53,8 @@ sudo make alt install
 # install python END ----------------------------
 
 # docker-composes
-sudo docker-compose -f /tmp/elasticsearch-docker-compose.yml up -d --build
-sudo docker-compose -f /tmp/kafka-docker-compose.yml up -d --build
+sudo docker-compose -f /tmp/docker-compose.yml build
+sudo docker-compose -f /tmp/docker-compose.yml build
+
+# sudo docker-compose -f /tmp/elasticsearch-docker-compose.yml up -d --build
+# sudo docker-compose -f /tmp/kafka-docker-compose.yml up -d --build
