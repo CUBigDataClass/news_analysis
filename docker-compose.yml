@@ -20,6 +20,8 @@ services:
       - ./elasticsearch-data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
+    networks:
+      elastic-app-network
 
   kibana:
     container_name: kibana
@@ -31,22 +33,42 @@ services:
       - 5601:5601
     depends_on:
       - elasticsearch
+    networks:
+      elastic-app-network
 
-  nextjs-ui:
-    build: 
-      context: ./total-news-next
+  client:
+    image: mhart/alpine-node:16.0
+    restart: always
     ports:
       - "3000:3000"
-    container_name: nextjs-ui
-    stdin_open: true
-    volumes: 
-      - ./total-news-next:/urs/src/app/total-next-next
-      - /usr/src/app/my-app/node_modules
+    working_dir: /client/src/app
+    volumes:
+      - ./client:/client/src/app
+    entrypoint: ["npm", "start"]
+    links:
+      - server
+    networks:
+      - elastic-app-network
+            
+  server:
+    image: mhart/alpine-node:16.0
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/server
+      - /server/node_modules
+    networks:
+      - elastic-app-network
+
+networks:
+  elastic-app-network:
+    driver: bridge
 
 volumes:
   elasticsearch-data:
     driver: local
 
 volumes:
-  total-news-next:
+  client:
     driver: local
