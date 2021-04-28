@@ -1,4 +1,4 @@
-project_name = "PetabytePeddler"
+project_name = "petabytepeddler"
 region = "us-central1"
 region_zone_a = "us-central1-a"
 region_zone_b = "us-central1-b"

@@ -52,9 +52,15 @@ make -j 2
 sudo make alt install
 # install python END ----------------------------
 
+#clone project code
+cd /tmp
+git clone https://github.com/CUBigDataClass/news_analysis.git
+cd news_analysis
+git checkout tl/dockerize
+
 # docker-composes
-sudo docker-compose -f /tmp/docker-compose.yml build
-sudo docker-compose -f /tmp/docker-compose.yml build
+sudo docker-compose -f /pipeline/docker-compose.yml build
+sudo docker-compose -f /pipeline/docker-compose.yml up -d
 
 # sudo docker-compose -f /tmp/elasticsearch-docker-compose.yml up -d --build
 # sudo docker-compose -f /tmp/kafka-docker-compose.yml up -d --build
