@@ -1,29 +1,3 @@
-resource "google_compute_firewall" "allow-all-internal" {
-  name = "allow-all-internal"
-  network = google_compute_network.elastic-network.name
-  allow {
-    protocol = "tcp"
-  }
-  allow {
-    protocol = "udp"
-  }
-  allow {
-    protocol = "icmp"
-  }
-  source_ranges = ["10.128.0.0/20"] // your subnet IP range
-}
-
-resource "google_compute_firewall" "allow-internal-lb" {
-  name = "allow-internal-lb"
-  network = google_compute_network.elastic-network.name
-  allow {
-    protocol = "tcp"
-    ports = var.ports_to_open
-  }
-  source_ranges = ["10.128.0.0/20"] // your subnet IP range
-  target_tags = var.network_tags
-}
-
 resource "google_compute_firewall" "ssh-rule" {
   name = "allow-ssh"
   network = google_compute_network.elastic-network.name
@@ -31,5 +5,20 @@ resource "google_compute_firewall" "ssh-rule" {
     protocol = "tcp"
     ports = ["22"]
   }
+  target_tags = ["total-news-elasticsearch"]
+
+  source_ranges = ["198.11.30.78", "174.16.200.128"] 
+  # ["198.11.30.78", "174.16.200.128"]
+}
+
+resource "google_compute_firewall" "team-rule" {
+  name = "allow-team-rule"
+  network = google_compute_network.elastic-network.name
+  allow {
+    protocol = "tcp"
+    ports = var.ports_to_open
+  }
+  target_tags = ["total-news-elasticsearch"]
   source_ranges = ["0.0.0.0/0"]
+  # ["198.11.30.78", "174.16.200.128"]
 }

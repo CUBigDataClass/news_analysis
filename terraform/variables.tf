@@ -11,7 +11,6 @@ variable "machine_access_scopes" {}
 variable "node_ips" {} 
 variable "master_node" {} 
 variable "gce_image" {} 
-variable "es_webapp_image" {}
 variable "ssh_tags" {} 
 variable "ca_bucket_location" {} 
 variable "backup_bucket" {} 

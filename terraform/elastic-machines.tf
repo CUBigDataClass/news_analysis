@@ -6,62 +6,40 @@ resource "google_compute_instance" "elastic-instance-1" {
   tags = var.network_tags
   boot_disk {
     initialize_params {
-    image = var.es_webapp_image
+    image = var.gce_image
     size = 130
     type = "pd-ssd"
     }
   }
   network_interface {
-    subnetwork = google_compute_subnetwork.elastic-subnet.self_link
-    network_ip = var.node_ips[0]
+    network = "default"
+
+    access_config {
+      nat_ip = "35.222.135.138"
+    }
   }
   service_account {
     scopes = var.machine_access_scopes
   }
   # metadata_startup_script = file("startup.sh")
-}
 
-resource "google_compute_instance" "elastic-instance-2" {
-  name = "elastic-instance-2"
-  machine_type = var.machine_type
-  zone = var.region_zone_a
-  allow_stopping_for_update = true
-  tags = var.network_tags
-  boot_disk {
-    initialize_params {
-    image = var.gce_image
-    size = 100
-    type = "pd-ssd"
-    }
+  metadata = {
+    ssh-keys = "tile9389:${file("~/.ssh/id_rsa.pub")}"
   }
-  network_interface {
-    subnetwork = google_compute_subnetwork.elastic-subnet.self_link
-    network_ip = var.node_ips[1]
+  connection {
+    type = "ssh"
+    host = "35.222.135.138"
+    user = "tile9389"
+    private_key = file("~/.ssh/id_rsa")
   }
-  service_account {
-    scopes = var.machine_access_scopes
+  provisioner "file" {
+    source      = "../pipeline/"
+    destination = "/tmp"
   }
-}
-
-resource "google_compute_instance" "elastic-instance-3" {
-  name = "elastic-instance-3"
-  machine_type = var.machine_type
-  zone = var.region_zone_b
-  allow_stopping_for_update = true
-  tags = var.network_tags
-  boot_disk {
-    initialize_params {
-    image = var.gce_image
-    size = 100
-    type = "pd-ssd"
-    }
+  provisioner "remote-exec" {
+    inline = [
+      "cd /tmp",
+      "sudo sh ./startup.sh"
+    ]
   }
-  network_interface {
-    subnetwork = google_compute_subnetwork.elastic-subnet.self_link
-    network_ip = var.node_ips[2]
-  }
-  service_account {
-    scopes = var.machine_access_scopes
-  }
-  # metadata_startup_script = templatefile("./startup.sh", {})
 }
