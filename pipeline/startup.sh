@@ -22,19 +22,21 @@ sudo apt-get -y install apt-transport-https
 
 # Save the repository definition to /etc/apt/sources.list.d/elastic-7.x.list:
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
-sudo apt-get -y update && sudo apt-get install logstash
 
 # Download and install the public signing key:
 sudo rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 
+sudo apt-get -y update && sudo apt-get -y install logstash
+
 sudo mkdir /etc/yum.repos.d
-sudo cp logstash.repo /etc/yum.repos.d/
+sudo cp ./pipeline/logstash.repo /etc/yum.repos.d/
 
 sudo yum -y install logstash
 # install logstash END ---------------------------
 
 # copy repo conf file for kafka pipeline
-sudo cp kafka-elastic-pipeline.conf /etc/logstash/conf.d/
+# sudo mkdir /etc/logstash
+sudo cp ./pipeline/kafka-elastic-pipeline.conf /etc/logstash/conf.d/
 
 # install python START ----------------------------
 sudo apt -y install wget build-essential libreadline-gplv2-dev libncursesw5-dev \
