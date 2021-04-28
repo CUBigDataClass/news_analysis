@@ -114,4 +114,6 @@ if __name__ == "__main__":
                 except BaseException as e:
                     print(data)
                     print("Error on_data %s" % str(e))
+        time.sleep(910)
+        
 
