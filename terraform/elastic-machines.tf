@@ -15,30 +15,28 @@ resource "google_compute_instance" "elastic-instance-1" {
     network = "default"
 
     access_config {
-      nat_ip = "35.222.135.138"
+      nat_ip = "34.70.33.196"
     }
   }
   service_account {
     scopes = var.machine_access_scopes
   }
-  # metadata_startup_script = file("startup.sh")
 
   metadata = {
     ssh-keys = "tile9389:${file("~/.ssh/id_rsa.pub")}"
   }
   connection {
     type = "ssh"
-    host = "35.222.135.138"
+    host = "34.70.33.196"
     user = "tile9389"
     private_key = file("~/.ssh/id_rsa")
   }
-  provisioner "file" {
-    source      = "../pipeline/"
-    destination = "/tmp"
-  }
+  # provisioner "file" {
+  #   source      = "../pipeline/"
+  #   destination = "/tmp"
+  # }
   provisioner "remote-exec" {
     inline = [
-      "ls /tmp",
       "cd /tmp",
       "sudo sh ./startup.sh"
     ]
