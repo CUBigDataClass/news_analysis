@@ -40,7 +40,7 @@ auth = tweepy.OAuthHandler(twitterApiKey,twitterApiSecret)
 auth.set_access_token(twitterApiAccessToken, twitterApiAccessTokenSecret)
 twetterApi = tweepy.API(auth, wait_on_rate_limit = True)
 
-# stopwords = stopwords.words('english')
+stopwords = stopwords.words('english')
 rake_object = RAKE.Rake(stopwords)
 
 keywords = ['officials issued citations', 'coronavirus violations overnight', 'ohio investigative unit']
