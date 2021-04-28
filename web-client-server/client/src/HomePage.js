@@ -10,8 +10,9 @@ import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        height: '100vh',
+        height: '100%',
         marginTop:3,
+        backgroundColor: '#a0b0d9',
     },
     title: {
         textAlign: 'center',
@@ -40,6 +41,7 @@ function HomePage() {
                 setNewsArray( oldArray => [...oldArray, news._source]);
             })
         });
+
     }, [])
 
     return (

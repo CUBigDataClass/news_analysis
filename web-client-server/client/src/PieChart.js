@@ -12,7 +12,6 @@ import {useParams} from "react-router-dom";
 
 function PieChart(props) {
     const {
-        // data = [{ label: 'Positive', value: 10 }, { label: 'Negative', value: 20 }, {label: 'neutral', value: 10}],
         outerRadius=100,
         innerRadius=0,
     } = props;
@@ -27,7 +26,7 @@ function PieChart(props) {
 
     const colorScale = d3
         .scaleSequential()
-        .interpolator(d3.interpolateWarm)
+        .interpolator(d3.interpolateCool)
         .domain([0, data.length]);
 
     useEffect(() => {
