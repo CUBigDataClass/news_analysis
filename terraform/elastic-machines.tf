@@ -21,7 +21,6 @@ resource "google_compute_instance" "elastic-instance-1" {
   service_account {
     scopes = var.machine_access_scopes
   }
-  # metadata_startup_script = file("startup.sh")
 
   metadata = {
     ssh-keys = "tile9389:${file("~/.ssh/id_rsa.pub")}"
