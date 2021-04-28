@@ -54,7 +54,7 @@ services:
     ports:
     - 9092:9092
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 10.128.0.5
+      KAFKA_ADVERTISED_HOST_NAME: 10.128.0.57
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     depends_on: 
       - zookeeper
