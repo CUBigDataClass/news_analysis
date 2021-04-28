@@ -56,7 +56,6 @@ sudo make alt install
 cd /tmp
 git clone https://github.com/CUBigDataClass/news_analysis.git
 cd news_analysis
-git checkout tl/dockerize
 
 # docker-composes
 sudo docker-compose -f /pipeline/docker-compose.yml build
