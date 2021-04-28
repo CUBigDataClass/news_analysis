@@ -17,7 +17,7 @@ import requests
 import datetime as DT
 
 import RAKE
-import nltk
+# import nltk
 from nltk.corpus import stopwords
 
 
