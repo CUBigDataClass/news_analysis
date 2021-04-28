@@ -13,29 +13,23 @@ const client = new Client({
     }
 })
 
-
 export const getPieChartData = async (req, res) => {
     try {
-        let count = {}
-        // const { body } = await client.search({
-        //     index: 'test',
-        //     body: {
-        //         query: {
-        //             match: {
-        //                 sentiment:'positive'
-        //             }
-        //         }
-        //     }
-        //
-        // })
-        const { body } = await client.sql.query({
+        const { body } = await client.search({
+            index: 'tweets',
             body: {
-                query: "SELECT * FROM 'test'"
+                query: {
+                    bool: {
+                        must: [
+                            {match: {sentiment: req.query.sentiment}},
+                            {match: {news_id: req.query.id}}
+                        ]
+                    }
+
+                }
             }
         })
-        console.log(body)
-        // count.negative = body.hits.total.value
-        res.status(200).json(count);
+        res.status(200).json(body);
     } catch (error) {
         res.status(404).json({message: error.message});
     }
