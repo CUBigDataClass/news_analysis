@@ -20,26 +20,28 @@ services:
       - ./elasticsearch-data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
-    networks:
-      - elastic-app-network
+    # networks:
+    #   - elastic-app-network
 
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.12.0
     restart: always
     environment: 
-      - ELASTICSEARCH_HOSTS=elasticsearch:9200
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
     ports:
       - 5601:5601
     depends_on:
       - elasticsearch
-    networks:
-      - elastic-app-network
+    # networks:
+    #   - elastic-app-network
 
   client:
     image: mhart/alpine-node:16.0
     container_name: client
     restart: always
+    environment: 
+      - SERVER_HOSTS=http://server:5000
     ports:
       - "3000:3000"
     working_dir: /client/src/app
@@ -49,8 +51,8 @@ services:
     entrypoint: ["npm", "start"]
     links:
       - server
-    networks:
-      - elastic-app-network
+    # networks:
+    #   - elastic-app-network
             
   server:
     image: mhart/alpine-node:16.0
@@ -61,12 +63,12 @@ services:
     volumes:
       - ./server:/server
       - /server/node_modules
-    networks:
-      - elastic-app-network
+    # networks:
+    #   - elastic-app-network
 
-networks:
-  elastic-app-network:
-    driver: bridge
+# networks:
+#   elastic-app-network:
+#     driver: bridge
 
 volumes:
   elasticsearch-data:
