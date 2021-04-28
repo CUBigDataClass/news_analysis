@@ -2,9 +2,6 @@
 # Tweepy - Python library for accessing the Twitter API.
 import tweepy
 
-# TextBlob - Python library for processing textual data
-from textblob import TextBlob
-
 # Pandas - Data manipulation and analysis library
 import pandas as pd
 
