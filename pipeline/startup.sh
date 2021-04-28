@@ -73,10 +73,10 @@ pip install tweepy
 
 sudo apt-get install python-dev
 
-sudo pip install pandas
+sudo pip3 install pandas
 
-pip install python-rake
+sudo pip3 install python-rake
 
-sudo pip install nltk==3.0
+sudo pip3 install nltk==3
 
 sudo pip install kafka-python
