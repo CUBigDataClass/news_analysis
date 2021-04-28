@@ -18,6 +18,7 @@ import datetime as DT
 
 import RAKE
 import nltk
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 
 
