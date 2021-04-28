@@ -13,8 +13,9 @@ import axios from "axios";
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
-        maxWidth: '136ch',
-        backgroundColor: theme.palette.background.paper,
+        maxWidth: '130ch',
+        backgroundColor: '#c3d1ef',
+        height: "500px",
     },
     inline: {
         display: 'inline',
@@ -22,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
     title: {
         fontSize: 24,
     },
+
+    card: {
+        width: "200px",
+        height: "222px"
+    }
 }));
 
 function Tweets() {
@@ -58,7 +64,7 @@ function Tweets() {
                             <ListItem alignItems="flex-start">
                                 <ListItemText primary={tweet.text} secondary={tweet.created_at}/>
                             </ListItem>)
-                             )
+                        )
                     }
                 </List>
             </CardContent>
