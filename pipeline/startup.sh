@@ -63,3 +63,14 @@ cd news_analysis
 # docker-composes
 sudo docker-compose -f ./pipeline/docker-compose.yml build
 sudo docker-compose -f ./pipeline/docker-compose.yml up -d
+
+#install pip
+curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py
+
+sudo python get-pip.py
+
+pip install tweepy
+
+sudo apt-get install python-dev
+
+
