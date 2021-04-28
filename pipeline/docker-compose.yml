@@ -36,46 +36,6 @@ services:
     networks:
       - elastic-app-network
 
-  zookeeper:
-    image: zookeeper
-    restart: always
-    container_name: zookeeper
-    hostname: zookeeper
-    ports:
-      - 2181:2181
-    environment:
-      ZOO_MY_ID: 1
-    networks:
-      - elastic-app-network
-
-  kafka:
-    image: wurstmeister/kafka
-    container_name: kafka
-    ports:
-    - 9092:9092
-    environment:
-      KAFKA_ADVERTISED_HOST_NAME: 10.128.0.57
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    depends_on: 
-      - zookeeper
-    networks:
-      - elastic-app-network
-
-  kafka_manager:
-    image: hlebalbau/kafka-manager:stable
-    container_name: kakfa-manager
-    restart: always
-    ports:
-      - "9000:9000"
-    environment:
-      ZK_HOSTS: "zookeeper:2181"
-      APPLICATION_SECRET: "random-secret"
-    command: -Dpidfile.path=/dev/null
-    depends_on: 
-      - kafka
-    networks:
-      - elastic-app-network
-
   client:
     image: mhart/alpine-node:16.0
     container_name: client
