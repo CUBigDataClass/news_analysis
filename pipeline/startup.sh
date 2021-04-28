@@ -77,6 +77,8 @@ sudo pip3 install pandas
 
 sudo pip3 install python-rake
 
-sudo pip3 install nltk==3
+sudo pip3 install nltk==3.7
 
-sudo pip install kafka-python
+sudo pip3 install kafka-python
+
+pip3 install pytest
