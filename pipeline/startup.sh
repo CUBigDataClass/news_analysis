@@ -59,8 +59,5 @@ git clone https://github.com/CUBigDataClass/news_analysis.git
 cd news_analysis
 
 # docker-composes
-sudo docker-compose -f /pipeline/docker-compose.yml build
-sudo docker-compose -f /pipeline/docker-compose.yml up -d
-
-# sudo docker-compose -f /tmp/elasticsearch-docker-compose.yml up -d --build
-# sudo docker-compose -f /tmp/kafka-docker-compose.yml up -d --build
+sudo docker-compose -f ./pipeline/docker-compose.yml build
+sudo docker-compose -f ./pipeline/docker-compose.yml up -d
