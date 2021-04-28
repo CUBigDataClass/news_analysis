@@ -9,10 +9,14 @@ import axios from "axios";
 const useStyles = makeStyles(() => ({
     root: {
         minWidth: 275,
+        backgroundColor: '#c3d1ef',
     },
     title: {
         fontSize: 24,
     },
+    time: {
+        fontSize: 10,
+    }
 }));
 
 function News() {
@@ -53,15 +57,16 @@ function News() {
                 <Typography className={classes.title}>
                     {news.title}
                 </Typography>
-                <Typography variant="body2" component="p">
+                <Typography variant="subtitle1" component="p">
                     {news.author}
                 </Typography>
-                <Typography variant="body2" component="p">
+                <Typography  color="textSecondary" variant="subtitle2" component="p">
+                    {news.publishedAt}
+                </Typography>
+                <Typography  variant="body1" paragraph="true" component="p">
                     {news.content}
                 </Typography>
-
-                <a href={news.url}>Found Out More</a>
-
+                 <a href={news.url}>Found Out More</a>
 
             </CardContent>
         </Card>
