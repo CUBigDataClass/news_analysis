@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import Grid from '@material-ui/core/Grid';
 import PieChart from './PieChart';
@@ -12,7 +12,10 @@ import Paper from '@material-ui/core/Paper';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import image from'./image.png';
+import image from './image.png';
+import image2 from './image2.png';
+import {useParams} from "react-router-dom";
+
 const useStyles = makeStyles(() => ({
     root: {
         flexGrow: 1,
@@ -33,10 +36,18 @@ const useStyles = makeStyles(() => ({
 function NewsPage() {
     const classes = useStyles();
     const history = useHistory();
-
+    const [newsId, setNewsId] = useState();
     const clickToDetails = () => {
         history.push("/");
     }
+    const { id } = useParams();
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/news/${id}`)
+            .then(() => {
+                setNewsId(id)
+            });
+    }, [])
 
     return (
         <div className={classes.root}>
@@ -61,7 +72,11 @@ function NewsPage() {
                     <PieChart/>
                 </Grid>
                 <Grid style={{ padding: "2%" }} item xs={2}>
-                    <img src={image} className={classes.image}/>
+                {
+                    newsId === 'skipping-second-covid-19-vaccine-shot-second-dosemillions-appear-moderna-shot'
+                    ? <img src={image2} className={classes.image}/>
+                    : <img src={image} className={classes.image}/>
+                }
                 </Grid>
                 <Grid style={{ padding: "2%" }} item xs={6}>
                     <Paper square className={classes.paper}>
