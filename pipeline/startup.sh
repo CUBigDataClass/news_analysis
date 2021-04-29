@@ -82,3 +82,5 @@ sudo pip3 install nltk==3.7
 sudo pip3 install kafka-python
 
 pip3 install pytest
+
+sudo apt install -y npm
