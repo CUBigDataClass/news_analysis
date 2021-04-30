@@ -99,12 +99,12 @@ function NewsPage() {
                     : <img src={image} className={classes.image2}/>
                 }
                 </Grid>
-                <Grid style={{ padding: "2%" }} item xs={6}>
-                    <LineChart/>
-                </Grid>
-                <Grid style={{ padding: "2%" }} item xs={6}>
-                    <MapChart/>
-                </Grid>
+                {/*<Grid style={{ padding: "2%" }} item xs={6}>*/}
+                {/*    <LineChart/>*/}
+                {/*</Grid>*/}
+                {/*<Grid style={{ padding: "2%" }} item xs={6}>*/}
+                {/*    <MapChart/>*/}
+                {/*</Grid>*/}
 
             </Grid>
 
