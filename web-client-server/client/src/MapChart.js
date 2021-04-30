@@ -4,6 +4,7 @@
  * Author: Richard Zimerman
  * Date: 2017
  * Availability: https://www.react-simple-maps.io/examples/usa-with-state-labels/
+ * data/allstates.json is also from this website.
  ***************************************************/
 import React from "react";
 import { geoCentroid } from "d3-geo";
