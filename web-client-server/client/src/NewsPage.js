@@ -15,6 +15,9 @@ import Typography from '@material-ui/core/Typography';
 import image from './image.png';
 import image2 from './image2.png';
 import {useParams} from "react-router-dom";
+import homeowner from './homeowner.png';
+import covid from './covid.png';
+import sharePrice from './shareprice.png'
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -27,8 +30,12 @@ const useStyles = makeStyles(() => ({
     title: {
         flexGrow: 1,
     },
+    image2: {
+        width: 650,
+        height: 420
+    },
     image: {
-        width: 500,
+        width: 480,
         height: 320
     },
 }));
@@ -74,8 +81,10 @@ function NewsPage() {
                 <Grid style={{ padding: "2%" }} item xs={2}>
                 {
                     newsId === 'skipping-second-covid-19-vaccine-shot-second-dosemillions-appear-moderna-shot'
-                    ? <img src={image2} className={classes.image}/>
-                    : <img src={image} className={classes.image}/>
+                    ? <img src={covid} className={classes.image}/>
+                    : (newsId === 'share-price-provides-unusual-boost-wall-street-journal-videogame-retailer')
+                    ? <img src={sharePrice} className={classes.image}/>
+                    : <img src={homeowner} className={classes.image}/>
                 }
                 </Grid>
                 <Grid style={{ padding: "2%" }} item xs={6}>
@@ -84,10 +93,17 @@ function NewsPage() {
                     </Paper>
                 </Grid>
                 <Grid style={{ padding: "2%" }} item xs={6}>
-                    <MapChart />
+                {
+                    newsId === 'skipping-second-covid-19-vaccine-shot-second-dosemillions-appear-moderna-shot'
+                    ? <img src={image2} className={classes.image2}/>
+                    : <img src={image} className={classes.image2}/>
+                }
                 </Grid>
-                <Grid style={{ padding: "2%" }} item xs={4}>
+                <Grid style={{ padding: "2%" }} item xs={6}>
                     <LineChart/>
+                </Grid>
+                <Grid style={{ padding: "2%" }} item xs={6}>
+                    <MapChart/>
                 </Grid>
 
             </Grid>
